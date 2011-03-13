@@ -5,24 +5,21 @@ require "mobile_ip"
 
 describe "モバイル環境のIPを返す" do
   before(:all) do
-    @ip = mobile_ip
+    @mip = MobileIP.new
   end
 
-  subject { @ip }
-  it { should be_an_instance_of(Hash) }
-
   context "softbank" do
-    subject { @ip[:softbank] }
+    subject { @mip.softbank }
     it { should have(182).items }
   end
 
   context "docomo" do
-    subject { @ip[:docomo] }
+    subject { @mip.docomo }
     it { should have(4318).items }
   end
 
   context "AU" do
-    subject { @ip[:au]}
+    subject { @mip.au}
     it { should have(2388).items }
   end
 end
