@@ -4,22 +4,18 @@ $: << File.expand_path(File.dirname(__FILE__) + "/../lib")
 require "mobile_ip"
 
 describe "モバイル環境のIPを返す" do
-  before(:all) do
-    @mip = MobileIP.new
-  end
-
   context "softbank" do
-    subject { @mip.softbank }
-    it { should have(182).items }
+    subject { MobileIP.softbank }
+    it { should have(182).ip_list }
   end
 
   context "docomo" do
-    subject { @mip.docomo }
-    it { should have(4318).items }
+    subject { MobileIP.docomo }
+    it { should have(4318).ip_list }
   end
 
   context "AU" do
-    subject { @mip.au}
-    it { should have(2388).items }
+    subject { MobileIP.au }
+    it { should have(2388).ip_list }
   end
 end
