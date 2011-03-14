@@ -91,4 +91,8 @@ class MobileIP
       }
     }
   end
+
+  def have?(ip)
+    @ip_list.include?(ip)
+  end
 end
