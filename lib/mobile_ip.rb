@@ -77,6 +77,13 @@ class MobileIP
     end
   end
 
+  def self.where_is(ip)
+    VENDERS.each do |vender,value|
+      return vender if self.send(vender).have? ip
+    end
+    nil
+  end
+
   attr_reader :ip_list
 
   def initialize(name,url,&block)
