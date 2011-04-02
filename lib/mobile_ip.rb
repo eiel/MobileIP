@@ -71,7 +71,7 @@ class MobileIP
       define_method(key,
                     proc {
                       self.new(value[:name],
-                               value[:url],
+ value[:url],
                                &value[:get_proc])
                     })
     end
@@ -86,12 +86,12 @@ class MobileIP
 
   attr_reader :ip_list
 
-  def initialize(name,url,&block)
+  def initialize(name,url,&get_addrs)
     @name = name
     doc = Hpricot(open(url))
-    records = block[doc]
+    addrs = get_addrs[doc]
     @ip_list = []
-    records.uniq.each {|r|
+    addrs.uniq.each {|r|
       a = NetAddr::CIDR.create(r)
       a.enumerate.each {|rr|
         @ip_list << rr if (rr != a.ip && rr != a.last)
